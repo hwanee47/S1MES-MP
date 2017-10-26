@@ -12,6 +12,6 @@
 - 전자정부프레임워크 3.6.0 (Spring 4.1.2)
 - iBatis
 - log4j
-- Kendo UI 도전? <http://demos.telerik.com/kendo-ui/>
+- Kendo UI 도전? 
 ```
-
+#### Kendo UI : <http://demos.telerik.com/kendo-ui/>
