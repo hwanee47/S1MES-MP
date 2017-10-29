@@ -13,6 +13,6 @@
 - iBatis
 - log4j
 - Jquery UI
-- JUI
+- Chartjs (Open Sourcer HTML5)
 ```
-#### JUI : <http://jui.io/>
+#### Chartjs : <http://www.chartjs.org/>
