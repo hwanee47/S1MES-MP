@@ -1,112 +1,185 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>S1MES</title>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
-<link href="<c:url value='/'/>css/login.css" rel="stylesheet" type="text/css" >
-<script type="text/javascript">
-	function actionLogin(){
-		if(document.loginForm.id.value == "")
-		{
-			alert("아이디를 입력하세요.");
-			return;		
-		}else if(document.loginForm.password.value == ""){
-			alert("비밀번호를 입력하세요.");
-			return;
-		}else{
-			document.loginForm.action="<c:url value='/loginProcess.do'/>";
-			document.loginForm.submit();
-		}
-	}
-	
-	function setCookie (name, value, expires) {
-	    document.cookie = name + "=" + escape (value) + "; path=/; expires=" + expires.toGMTString();
-	}
 
-	function getCookie(Name) {
-	    var search = Name + "="
-	    if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면
-	        offset = document.cookie.indexOf(search)
-	        if (offset != -1) { // 쿠키가 존재하면
-	            offset += search.length
-	            // set index of beginning of value
-	            end = document.cookie.indexOf(";", offset)
-	            // 쿠키 값의 마지막 위치 인덱스 번호 설정
-	            if (end == -1)
-	                end = document.cookie.length
-	            return unescape(document.cookie.substring(offset, end))
-	        }
-	    }
-	    return "";
-	}
-
-	function saveid(form) {
-	    var expdate = new Date();
-	    // 기본적으로 30일동안 기억하게 함. 일수를 조절하려면 * 30에서 숫자를 조절하면 됨
-	    if (form.checkId.checked)
-	        expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30); // 30일
-	    else
-	        expdate.setTime(expdate.getTime() - 1); // 쿠키 삭제조건
-	    setCookie("saveid", form.id.value, expdate);
-	}
-
-	function getid(form) {
-	    form.checkId.checked = ((form.id.value = getCookie("saveid")) != "");
-	}
-	
-	function fnInit(){
-		
-		var message = document.loginForm.message.value;
-	    if (message != "") {
-	        alert(message);
-	    }
-	    
-	    getid(document.loginForm);
-	}
-
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" />
 </head>
-<body onload="fnInit();">
-<h3>S1MES</h3>
-<!-- 전체 레이어 시작 -->
-<div id="wrap">
-	<!-- header 시작 -->
-	<div id="header_mainsize"></div>
-	<div id="topnavi"></div>
-	<!-- //header 끝 -->
-    <!-- container 시작 -->
-	<div id="container">
-		<!-- 좌측메뉴 시작 -->
-        <div id="leftmenu"><c:import url="/s1mesPageLink.do?link=main/inc/EgovIncLeftmenu" /></div>
-        <!-- //좌측메뉴 끝 -->
-	<form:form name="loginForm" method="post">
-		<table>
-			<tr>
-				<td><label for="id"><img alt="login" src="<c:url value='/'/>images/login/img_idtext.gif" /></label></td>
-				<td><input type="text" class="input_style" title="아이디를 입력하세요." id="id" name="id" maxlength="10"/></td>
-			</tr>
-			<tr>
-				<td><label for="password"><img alt="password" src="<c:url value='/'/>images/login/img_pwtext.gif" /></label></td>
-				<td> <input type="password" class="input_style" maxlength="25" title="비밀번호를 입력하세요." id="password" name="password" 
-	                                               onkeydown="javascript:if (event.keyCode == 13) { actionLogin();}"/></td>
-	            <td><input type="checkbox" name="checkId" onclick="javascript:saveid(this.form);" id="checkId" /><label for="checkId">ID저장</label></td>
-			</tr>
-			
-	        <tr>
-	            <td colspan="3" align="right" >
-	               <input type="image" alt="로그인 버튼" class="btn_style" onclick="javascript:actionLogin()" src="<c:url value='/'/>images/login/btn_login.gif"  />
-	            </td>
-	        </tr>
-		</table>
-		<input type="hidden" name="message" value="${message}" />
-	</form:form>
-	</div>
-</div>
+<body>
+	<!-- Header -->
+			<header id="header" class="alt">
+				<div class="logo"><a href="index.html">Hielo <span>by TEMPLATED</span></a></div>
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="generic.html">Generic</a></li>
+					<li><a href="elements.html">Elements</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+			<section class="banner full">
+				<article>
+					<img src="images/slide01.jpg" alt="" />
+					<div class="inner">
+						<header>
+							<p>A free responsive web site template by <a href="https://templated.co">TEMPLATED</a></p>
+							<h2>Hielo</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/slide02.jpg" alt="" />
+					<div class="inner">
+						<header>
+							<p>Lorem ipsum dolor sit amet nullam feugiat</p>
+							<h2>Magna etiam</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/slide03.jpg"  alt="" />
+					<div class="inner">
+						<header>
+							<p>Sed cursus aliuam veroeros lorem ipsum nullam</p>
+							<h2>Tempus dolor</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/slide04.jpg"  alt="" />
+					<div class="inner">
+						<header>
+							<p>Adipiscing lorem ipsum feugiat sed phasellus consequat</p>
+							<h2>Etiam feugiat</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/slide05.jpg"  alt="" />
+					<div class="inner">
+						<header>
+							<p>Ipsum dolor sed magna veroeros lorem ipsum</p>
+							<h2>Lorem adipiscing</h2>
+						</header>
+					</div>
+				</article>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper style2">
+				<div class="inner">
+					<div class="grid-style">
+
+						<div>
+							<div class="box">
+								<div class="image fit">
+									<img src="images/pic02.jpg" alt="" />
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>maecenas sapien feugiat ex purus</p>
+										<h2>Lorem ipsum dolor</h2>
+									</header>
+									<p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.</p>
+									<footer class="align-center">
+										<a href="#" class="button alt">Learn More</a>
+									</footer>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<div class="box">
+								<div class="image fit">
+									<img src="images/pic03.jpg" alt="" />
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>mattis elementum sapien pretium tellus</p>
+										<h2>Vestibulum sit amet</h2>
+									</header>
+									<p> Cras aliquet urna ut sapien tincidunt, quis malesuada elit facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh a libero pharetra elementum. Maecenas feugiat ex purus, quis volutpat lacus placerat malesuada.</p>
+									<footer class="align-center">
+										<a href="#" class="button alt">Learn More</a>
+									</footer>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
+						<h2>Morbi maximus justo</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Three -->
+			<section id="three" class="wrapper style2">
+				<div class="inner">
+					<header class="align-center">
+						<p class="special">Nam vel ante sit amet libero scelerisque facilisis eleifend vitae urna</p>
+						<h2>Morbi maximus justo</h2>
+					</header>
+					<div class="gallery">
+						<div>
+							<div class="image fit">
+								<a href="#"><img src="images/pic01.jpg" alt="" /></a>
+							</div>
+						</div>
+						<div>
+							<div class="image fit">
+								<a href="#"><img src="images/pic02.jpg" alt="" /></a>
+							</div>
+						</div>
+						<div>
+							<div class="image fit">
+								<a href="#"><img src="images/pic03.jpg" alt="" /></a>
+							</div>
+						</div>
+						<div>
+							<div class="image fit">
+								<a href="#"><img src="images/pic04.jpg" alt="" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. All rights reserved.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+			<script src="<%=request.getContextPath()%>/js/jquery.scrollex.min.js"></script>
+			<script src="<%=request.getContextPath()%>/js/skel.min.js"></script>
+			<script src="<%=request.getContextPath()%>/js/util.js"></script>
+			<script src="<%=request.getContextPath()%>/js/main.js"></script>
 </body>
 </html>
