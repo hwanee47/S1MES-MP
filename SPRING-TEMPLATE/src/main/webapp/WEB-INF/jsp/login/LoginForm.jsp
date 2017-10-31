@@ -40,7 +40,7 @@
 				<div class="inner" >
 					<header>
 						<p>A free responsive web site template by Hwanee1</a></p>
-						<h2>TESTgg</h2>
+						<h2>TES</h2>
 						test
 					</header>
 					

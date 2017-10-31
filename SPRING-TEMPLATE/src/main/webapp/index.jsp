@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%response.sendRedirect("loginForm.do"); %>
+	<%-- <%response.sendRedirect("loginForm.do"); %> --%>
+	test
 </body>
 </html>
