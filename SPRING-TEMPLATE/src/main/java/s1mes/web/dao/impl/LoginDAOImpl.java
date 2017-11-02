@@ -1,5 +1,8 @@
 package s1mes.web.dao.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
@@ -43,4 +46,12 @@ public class LoginDAOImpl extends EgovAbstractDAO implements LoginDAO{
 		
 		return loginVO;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HashMap<String, String>> selectTBLE915() {
+		// TODO Auto-generated method stub
+		return (List<HashMap<String, String>>) list("TEST.test");
+	}
+
 }

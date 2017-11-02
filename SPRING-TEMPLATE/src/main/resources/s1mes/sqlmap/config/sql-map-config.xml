@@ -2,5 +2,9 @@
 <!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
 
 <sqlMapConfig>
+	<!-- 네임스페이스 사용 -->
+	<settings useStatementNamespaces="true"/> 
+	
+	<!-- Resource -->
 	<sqlMap resource="s1mes/sqlmap/mappers/EgovSample_Sample_SQL.xml"/>
 </sqlMapConfig>

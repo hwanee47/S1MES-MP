@@ -1,5 +1,8 @@
 package s1mes.web.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import s1mes.web.model.LoginVO;
 
 
@@ -16,4 +19,6 @@ import s1mes.web.model.LoginVO;
  */
 public interface LoginDAO {
 	public LoginVO actionLogin(LoginVO vo) throws Exception;
+	
+	public List<HashMap<String, String>> selectTBLE915();
 }

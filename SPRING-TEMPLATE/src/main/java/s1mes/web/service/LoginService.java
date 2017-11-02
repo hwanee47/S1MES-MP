@@ -1,5 +1,8 @@
 package s1mes.web.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import s1mes.web.model.LoginVO;
 
 /**
@@ -23,4 +26,6 @@ public interface LoginService {
 	 * @exception Exception
 	 */
 	public LoginVO actionLogin(LoginVO vo) throws Exception;
+	
+	public List<HashMap<String, String>> test() throws Exception;
 }

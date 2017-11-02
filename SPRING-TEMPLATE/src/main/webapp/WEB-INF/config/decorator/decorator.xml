@@ -2,7 +2,7 @@
 <!-- default directory 설정 -->
 <decorators defaultdir="/WEB-INF/jsp/decorators">
 	<!-- sample -->
-	<decorator name="sampleLayout" page="sampleLayout.jsp">
+	<decorator name="Layout" page="decorator.jsp">
 		<pattern>/*</pattern>
 	</decorator>
 	

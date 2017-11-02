@@ -10,12 +10,8 @@
 
 <style type="text/css">
     
-    .banner full{
-    	background-image:url('/images/slide01.jpg');
-    	background-color: green;
-    }
+    
 </style>
-
 </head>
 <body>
 		<!-- Header -->
@@ -35,13 +31,12 @@
 
 		<!-- Banner -->
 		<section class="banner3"> 
-			 
 				
 				<div class="inner" >
 					<header>
 						<p>A free responsive web site template by Hwanee1</a></p>
-						<h2>TES</h2>
-						test
+						<h2>TESTtt</h2>
+						
 					</header>
 					
 				</div>
@@ -52,36 +47,37 @@
 			        		<tr><td><h5>ID </h5></td><td><input id="terst" type="text" name="id" /></td></tr>
 			        		<tr><td><h5>PASSWORD</h5></td><td><input type="text" name="password" /></td><td><input type="submit" value="LOGIN" class="btn_login" onclick="fn_login()"></td></tr>
 			        		</table>	
-			        			
 			        </div>
+			        <input type="hidden" name="message" value="${message}" />
 			    </form>
-				
-			
 			
 		</section>
 
-		<!-- Footer -->
-		<footer id="footer">
-			<div class="container">
-				<ul class="icons">
-					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-				</ul> 
-			</div>
-			<div class="copyright">
-				&copy; Untitled. All rights reserved.
-			</div>
-		</footer>
+		
 
 	<!-- ================================================================================================ -->
 
 	<script type="text/javascript">
     	
+		
+	
+	
     	function fn_login() {
-    		document.loginForm.submit();	
+    		
+    		if(document.loginForm.id.value == "")
+    		{
+    			alert("아이디를 입력하세요.");
+    			return false;		
+    		}else if(document.loginForm.password.value == ""){
+    			alert("비밀번호를 입력하세요.");
+    			return false;
+    		}else{
+    			document.loginForm.submit();
+    		}
     	}
+    	
+    	
+    	
     	
     </script>	
 </body>

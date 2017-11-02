@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
-<sqlMap namespace="Sample">
+<sqlMap namespace="TEST">
 
-	
+	<select id="test" resultClass="Map">
+		SELECT
+			*
+		FROM
+			TB_LE_915
+		WHERE
+			LOT_NO='P170331P148'
+	</select>
 </sqlMap>

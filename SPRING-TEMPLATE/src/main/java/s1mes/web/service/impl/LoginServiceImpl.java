@@ -1,5 +1,8 @@
 package s1mes.web.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +39,11 @@ public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginSe
 	public LoginVO actionLogin(LoginVO vo) throws Exception {
 		
 		return loginDAO.actionLogin(vo);
+	}
+
+	@Override
+	public List<HashMap<String, String>> test() throws Exception {
+		return loginDAO.selectTBLE915();
 	}
 
 }
