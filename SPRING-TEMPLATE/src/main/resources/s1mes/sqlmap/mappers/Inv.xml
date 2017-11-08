@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Inv">
+
+	<select id="selectStdPdInfo" resultClass="HashMap">
+		WITH A AS(
+			SELECT 
+				RORD_NUM
+				,SNO AS RORD_SNO
+				,COALESCE(SUM(BND_CNT),0) QTY
+			FROM 
+				TB_LE_915 LE_915 
+			WHERE 
+				SUBSTR(ST_PO,1,1)='P' 
+			AND KND = 'P' 
+			AND BD_DIV <![CDATA[<>]]>'B' 
+			AND COALESCE(TAOUT_DT,'') = '' 
+			AND (SELECT ORD_TYPE FROM TB_SD_100 SD_100 WHERE SD_100.RORD_NUM = LE_915.RORD_NUM) IN ('S','I')
+			GROUP BY RORD_NUM,SNO
+		),GOAL_CHG(RORD_NUM, RORD_SNO, RORD_NUM_BF, RORD_SNO_BF, LEVEL, PROC_CD) AS (
+			SELECT
+				P1.RORD_NUM
+				,P1.SNO
+				,P1.RORD_NUM_BF
+				,P1.RORD_SNO_BF
+				,0
+				,P1.PROC_CD	
+			FROM
+				TB_SD_110 P1
+				,A P2
+			WHERE
+				P1.RORD_NUM = P2.RORD_NUM AND P1.SNO = P2.RORD_SNO
+			
+			UNION ALL
+			
+			SELECT
+				P1.RORD_NUM
+				,P1.SNO
+				,P1.RORD_NUM_BF
+				,P1.RORD_SNO_BF
+				,P2.LEVEL+1
+				,P1.PROC_CD	
+			FROM
+				TB_SD_110 P1
+				,GOAL_CHG P2
+			WHERE
+				P1.RORD_NUM_BF = P2.RORD_NUM AND P1.RORD_SNO_BF = P2.RORD_SNO
+			AND P1.PROC_CD NOT IN ( '95', '98')	  
+		
+		),B AS(
+		
+			SELECT
+				A.RORD_NUM
+				,A.RORD_SNO
+				,A.IN_WAR_QTY-COALESCE(B.TAOUT_QTY,0) QTY
+			FROM
+				(
+					SELECT
+					 	A.RORD_NUM 
+					 	,A.RORD_SNO
+					 	,A.IN_WAR_QTY
+					 	,B.RORD_NUM_BF
+					 	,B.RORD_SNO_BF
+					FROM 
+						TB_LE_450 A
+						,GOAL_CHG B	
+					WHERE
+						A.RORD_NUM = B.RORD_NUM
+					AND A.RORD_SNO = B.RORD_SNO
+					AND A.IN_WAR_TYPE = 'IL'
+					AND A.FAC_CD='P'
+					AND B.PROC_CD NOT IN ( '89' )	 
+				)A
+			LEFT OUTER JOIN 
+				(
+					SELECT
+						A.RORD_NUM
+						,A.RORD_SNO
+						,SUM(A.TAOUT_QTY) TAOUT_QTY
+					FROM
+						TB_LE_460 A
+						,GOAL_CHG B
+					WHERE
+						A.RORD_NUM = B.RORD_NUM
+					AND A.RORD_SNO = B.RORD_SNO
+					AND A.FAC_CD='P'
+					AND B.PROC_CD NOT IN ( '89' )
+					AND A.TAOUT_TYPE NOT IN ('OE','OX')
+					AND A.CREATE_PG_ID <![CDATA[<>]]>  'LE_LCM_900'	
+					GROUP BY A.RORD_NUM,A.RORD_SNO
+				)B
+			ON (A.RORD_NUM=B.RORD_NUM AND A.RORD_SNO=B.RORD_SNO)
+			WHERE
+				A.IN_WAR_QTY - COALESCE(B.TAOUT_QTY,0) > 0 
+				
+			
+		),C AS(
+			SELECT
+				A.RORD_NUM
+				,A.SNO AS RORD_SNO
+				,SUM(A.REQ_CNT) QTY
+			FROM
+				TB_SD_310 A
+				,GOAL_CHG B
+			WHERE
+				A.RORD_NUM = B.RORD_NUM
+			AND A.SNO = B.RORD_SNO
+			AND	A.PROC_CD <![CDATA[<>]]> '89'
+			AND A.TAOUT_TYPE IN ('O3', 'O4')
+			GROUP BY
+				A.RORD_NUM,A.SNO
+		),D AS(
+			SELECT
+				A.RORD_NUM
+				,A.RORD_SNO
+				,SUM(CASE WHEN A.TAOUT_TYPE = 'OA' OR A.TAOUT_TYPE ='OF' THEN A.TAOUT_QTY END) QTY_OAOF
+				,SUM(CASE WHEN A.TAOUT_TYPE ='OE' THEN A.TAOUT_QTY END) QTY_OE
+			FROM
+				TB_LE_460 A
+				,GOAL_CHG B
+			WHERE
+				A.RORD_NUM = B.RORD_NUM
+			AND A.RORD_SNO = B.RORD_SNO
+			AND A.FAC_CD = 'P'
+			AND	B.PROC_CD NOT IN ('89','95', '98')
+			AND A.TAOUT_TYPE IN ('OA','OF','OE')
+			GROUP BY A.RORD_NUM, A.RORD_SNO
+		)
+		
+		SELECT
+			SUM(CURRENT_QTY) - SUM(GOAL_CHG_QTY) - SUM(SHIP_QTY) - SUM(STOCK_QTY) AS STANDARD_PRODUCT_INV
+		FROM
+		(
+			SELECT
+				SUM(A.QTY) AS CURRENT_QTY
+				,0 AS GOAL_CHG_QTY
+				,0 AS SHIP_QTY
+				,0 AS STOCK_QTY
+			FROM
+				A
+				
+			UNION ALL
+			
+			SELECT
+				0 AS CURRENT_QTY
+				,SUM(B.QTY) AS GOAL_CHG_QTY
+				,0 AS SHIP_QTY
+				,0 AS STOCK_QTY
+			FROM
+				B
+				
+			UNION ALL
+			
+			SELECT
+				0 AS CURRENT_QTY
+				,0 AS GOAL_CHG_QTY
+				,SUM(C.QTY) AS SHIP_QTY
+				,0 AS STOCK_QTY
+			FROM
+				C
+			
+			UNION ALL
+			
+			SELECT
+				0 AS CURRENT_QTY
+				,0 AS GOAL_CHG_QTY
+				,0 AS SHIP_QTY
+				,SUM(D.QTY_OAOF)-SUM(D.QTY_OE) AS STOCK_QTY
+			FROM
+				D
+			
+		)RESULT
+
+	</select>
+</sqlMap>

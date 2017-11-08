@@ -8,8 +8,17 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" />
+
 <title><decorator:title default="JLStory" /></title>
 <decorator:head />
+
+<style>
+	/* Clearing the Float */
+	#footer{
+		clear:both;
+	}
+</style>
+
 </head>
 <body>
 	<!-- HEADER -->

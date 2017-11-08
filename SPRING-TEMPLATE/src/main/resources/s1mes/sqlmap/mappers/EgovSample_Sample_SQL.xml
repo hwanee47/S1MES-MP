@@ -3,9 +3,9 @@
 
 <sqlMap namespace="TEST">
 
-	<select id="test" resultClass="Map">
+	<select id="test" resultClass="HashMap">
 		SELECT
-			*
+			LOT_NO
 		FROM
 			TB_LE_915
 		WHERE

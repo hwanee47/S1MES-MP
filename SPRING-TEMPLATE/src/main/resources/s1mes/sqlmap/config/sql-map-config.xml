@@ -7,4 +7,5 @@
 	
 	<!-- Resource -->
 	<sqlMap resource="s1mes/sqlmap/mappers/EgovSample_Sample_SQL.xml"/>
+	<sqlMap resource="s1mes/sqlmap/mappers/Inv.xml"/>
 </sqlMapConfig>

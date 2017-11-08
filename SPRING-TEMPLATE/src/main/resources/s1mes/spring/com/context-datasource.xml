@@ -8,7 +8,8 @@
     <!-- DB2 AS400 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.ibm.as400.access.AS400JDBCDriver"/>
-        <property name="url" value="jdbc:as400://192.168.10.1/MESTESTLIB" />
+        <property name="url" value="jdbc:as400://192.168.10.1/MESDATLIB" />
+        <!-- <property name="url" value="jdbc:as400://192.168.10.1/MESTESTLIB" /> -->
         <property name="username" value="s1mes"/>
         <property name="password" value="s1mes"/>
     </bean>

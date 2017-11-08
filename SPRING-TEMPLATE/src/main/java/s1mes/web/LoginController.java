@@ -87,7 +87,7 @@ public class LoginController {
 		if(resultVO != null && resultVO.getId() != null && resultVO.getPassword() != null)
 		{
 			request.getSession().setAttribute("LoginVO", resultVO);
-			return "redirect:/test.do";
+			return getSuccessView();
 		}else{
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
 			return getFormView();
@@ -96,20 +96,5 @@ public class LoginController {
 	}
 	
 	
-	/**
-	 * 
-	 * @param vo - 아이디, 비밀번호가 담긴 LoginVO
-	 * @param request - 세션처리를 위한 HttpServletRequest
-	 * @return result - 로그인결과(세션정보)
-	 * @exception Exception
-	 */
-	@RequestMapping(value = "/test.do")
-	public void test(HttpServletRequest request, ModelMap model) throws Exception{
-		
-		// 1. 일반 로그인 처리 
-		List<HashMap<String, String>> list= loginService.test();
-		
-		
-		
-	}
+	
 }

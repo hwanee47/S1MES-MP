@@ -9,6 +9,6 @@
 <br/>
 <a href="memberInfo.do">로그인 사용자 정보를 보기</a>
 
-<%response.sendRedirect("test.do"); %>
+	<%response.sendRedirect("invStdPdCheck.do"); %>
 </body>
 </html>
