@@ -27,7 +27,8 @@ import s1mes.web.service.LoginService;
  * @  수정일         수정자                   수정내용
  * @ -------    --------    ---------------------------
  * @ 2017.11.08    김진환          최초 생성
- *
+ * 	 2017.11.10          김진환 	      표준품 판매가능 조회추가.
+ *	 2017.11.10          김진환 	      재고품수주관리 판매가능조회추가.
  *  
  */
 
@@ -54,13 +55,9 @@ public class InvController {
 	 * @exception Exception
 	 */
 	@RequestMapping(value = "/invStdPdCheck.do")
-	public String test(HttpServletRequest request, ModelMap model) throws Exception{
+	public String invCheck(HttpServletRequest request, ModelMap model) throws Exception{
+		model.addAttribute("invCheckInfo", invService.invCheck());
 		
-		// 표준품 판매가능 재고 조회.
-		HashMap<String, String> standardProductInfo= invService.findStdPdInfo();
-		
-		model.addAttribute("STANDARD_PRODUCT_INV", standardProductInfo.get("STANDARD_PRODUCT_INV"));
 		return "inv/invCheck";
-		
 	}
 }

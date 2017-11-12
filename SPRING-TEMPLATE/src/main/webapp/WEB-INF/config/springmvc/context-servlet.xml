@@ -20,4 +20,16 @@
             </list>
         </property>
     </bean>
+    
+    <bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+        <property name="host" value="smtp.naver.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="kjhnuo246"/>
+        <property name="password" value="2dnjfekf@"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+	</bean>
 </beans>

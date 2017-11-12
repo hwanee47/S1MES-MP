@@ -25,8 +25,8 @@ public class AdviceUsingXML {
 
 		// 현재 class, method 정보 및 method arguments 로깅
 		StringBuffer buf = new StringBuffer();
-		buf.append("\n== AdviceUsingXML.beforeTargetMethod : [" + className
-			+ "." + methodName + "()] ==");
+		buf.append("\n\n======================== 다음 메소드실행합니다. : [" + className
+			+ "." + methodName + "()] =====================================");
 		Object[] arguments = thisJoinPoint.getArgs();
 		int argCount = 0;
 		for (Object obj : arguments) {
@@ -59,8 +59,8 @@ public class AdviceUsingXML {
 
 		// 현재 class, method 정보 및 method arguments 로깅
 		StringBuffer buf = new StringBuffer();
-		buf.append("\n== AdviceUsingXML.afterReturningTargetMethod : ["
-			+ className + "." + methodName + "()] ==");
+		buf.append("\n======================== 다음 메소드 종료합니다. : ["
+			+ className + "." + methodName + "()] =====================================\n\n");
 
 		buf.append("\n");
 

@@ -74,12 +74,15 @@
 			{
 				"type":"bar",
 				"data":{
-					"labels":["표준품","February","March","April","May","June","TEST"]
-					,"datasets":[{"label":"My First Dataset"
-					,"data":['${STANDARD_PRODUCT_INV}',20000,30000,40000,50000,35000,10000]
-					,"fill":false
-					,"backgroundColor":["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)"],"borderColor":["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)"]
-					,"borderWidth":1}]
+					"labels":["현재고","목적전환","이송대기","보관재고","판매가능"]
+					,"datasets":[{
+									"label":"표준품 판매가능 재고"
+									,"data":['${invCheckInfo.CURRENT_QTY}','${invCheckInfo.GOAL_CHG_QTY}','${invCheckInfo.SHIP_QTY}','${invCheckInfo.STOCK_QTY}','${invCheckInfo.STANDARD_PRODUCT_INV}']
+									,"fill":false
+									,"backgroundColor":["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)"]
+									,"borderColor":["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)"]
+									,"borderWidth":1
+								}]
 				},
 				"options":{"scales":{"yAxes":[{"ticks":{"beginAtZero":true}}]}}
 			}
@@ -90,7 +93,28 @@
 	</script>
 </div>
 
-
+<div class="body-2 chart">
+<canvas id="myChart1" width="300" height="400"></canvas>
+	<script>
+	new Chart(document.getElementById("myChart1"),
+			{
+				"type":"bar",
+				"data":{
+					"labels":["입고수량","목적전환","출하의뢰","재가공","판매가능"]
+					,"datasets":[{
+									"label":"재고품수주관리 판매가능 재고"
+									,"data":['${invCheckInfo.IN_WAR_QTY}','${invCheckInfo.ORD_CHG_QTY}','${invCheckInfo.REQ_CNT}','${invCheckInfo.RE_WORK_QTY}','${invCheckInfo.SELL_AVAIL_INV_QTY}']
+									,"fill":false
+									,"backgroundColor":["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)"]
+									,"borderColor":["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)"]
+									,"borderWidth":1
+								}]
+				},
+				"options":{"scales":{"yAxes":[{"ticks":{"beginAtZero":true}}]}}
+			}
+	);
+	</script>
+</div>
 
 <div class="body-3 aside">
 <h2>What?</h2>

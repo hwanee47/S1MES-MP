@@ -1,7 +1,10 @@
 package s1mes.com;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +24,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ComUtlController {
 
+	/** 메일*/
+	@Resource(name = "mailSender")
+    private JavaMailSender mailSender;
+	
+	
 	/**
 	 * 페이지 이동 처리
 	 * @param linkPage - 화면 이름
@@ -47,5 +55,30 @@ public class ComUtlController {
 			session.setAttribute("menuNo",menuNo);
 		}
 		return link;
+	}
+	
+	
+	/**
+	 * 메일전송
+	 * @param subject - 메일 제목
+	 * @param text - 메일 내용
+	 * @param from - 보내는사람
+	 * @param to - 받는사람
+	 * @exception Exception
+	 */
+	public void sendMail(String subject, String text, String from, String to) throws Exception
+	{		
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setSubject(subject);
+		
+        msg.setText(text);
+        
+        msg.setFrom(from);
+        //msg.setRecipient(RecipientType.TO , new InternetAddress("hwyun@ilshin.com"));
+        msg.setTo(to);
+         
+        mailSender.send(msg); 
+        
+        
 	}
 }
