@@ -1,22 +1,16 @@
 package s1mes.web;
 
-import java.util.HashMap;
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import s1mes.com.EgovMessageSource;
-import s1mes.web.model.LoginVO;
 import s1mes.web.service.InvService;
-import s1mes.web.service.LoginService;
 
 
 /**
@@ -58,6 +52,18 @@ public class InvController {
 	public String invCheck(HttpServletRequest request, ModelMap model) throws Exception{
 		model.addAttribute("invCheckInfo", invService.invCheck());
 		
+		
+		
 		return "inv/invCheck";
 	}
+	
+	/*
+	 * 스케줄링
+	 * @Scheduled(fixedRate=5000)
+	public void invCheckSchedule() throws Exception{
+		ModelMap model = new ModelMap();
+		model.addAttribute("invCheckInfo", invService.invCheck());
+		System.out.println("test:::스케줄러");		
+		
+	}*/
 }

@@ -6,7 +6,7 @@
 <title>S1MES</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" />
+
 
 <style type="text/css">
     
@@ -14,27 +14,15 @@
 </style>
 </head>
 <body>
-		<!-- Header -->
-		<header id="header" class="alt">
-			<div class="logo"><a href="index.html">Hielo <span>by TEMPLATED</span></a></div>
-			<a href="#menu">Menu</a>
-		</header>
+		
 
-		<!-- Nav -->
-		<nav id="menu">
-			<ul class="links">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="generic.html">Generic</a></li>
-				<li><a href="elements.html">Elements</a></li>
-			</ul>
-		</nav>
 
 		<!-- Banner -->
 		<section class="banner3"> 
 				
 				<div class="inner" >
 					<header>
-						<p>A free responsive web site template by Hwanee1</a></p>
+						<p><a>A free responsive web site template by Hwanee1</a></p>
 						<h2>TESTtt</h2>
 						
 					</header>
