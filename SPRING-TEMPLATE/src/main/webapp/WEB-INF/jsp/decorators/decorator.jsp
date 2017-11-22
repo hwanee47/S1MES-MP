@@ -7,10 +7,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-
- <!-- css는 적는 순서대로 덮어쓰기때문에 bootstrap css를 먼저 적어주었다. -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">	 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" /> 
+ <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" /> 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
 <style>
@@ -30,7 +27,7 @@
 	}
 
 	$(document).ready(function(){
-		$(".btn_menu").click(function() {
+		$(".btn").click(function() {
 			$("#menu,.page_cover,html").addClass("open");
 			window.location.hash = "#open";
 		});
@@ -61,7 +58,7 @@
 	</header>
 	
 	<!-- MENU -->	
-	<div class="btn_menu">
+	<div class="btn">
 
 	</div>
 	<div onclick="history.back();" class="page_cover"></div>
