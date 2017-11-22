@@ -30,14 +30,13 @@ public class ComUtlController {
 	
 	
 	/**
-	 * 페이지 이동 처리
+	 * 페이지 이동 처리 , JSP 호출작업만 처리하는 공통 함수
 	 * @param linkPage - 화면 이름
 	 * @param session - 세션처리를 위한 HttpServletRequest
-	 * @param menuNo - 
-	 * @return result - 로그인결과(세션정보)
+	 * @param menuNo - 메뉴번호
 	 * @exception Exception
 	 */
-	@RequestMapping(value="/EgovPageLink.do")
+	@RequestMapping(value="/s1mesPageLink.do")
 	public String moveToPage(@RequestParam("link") String linkPage, 
 			HttpSession session, 
 			@RequestParam(value="menuNo", required=false) String menuNo){

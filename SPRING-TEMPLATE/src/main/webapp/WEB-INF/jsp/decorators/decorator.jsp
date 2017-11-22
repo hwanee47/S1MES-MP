@@ -7,7 +7,10 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" /> 
+
+ <!-- css는 적는 순서대로 덮어쓰기때문에 bootstrap css를 먼저 적어주었다. -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">	 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" /> 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
 <style>
@@ -18,8 +21,16 @@
 </style>
 
 <script>
+	function fn_main_headPageMove(menuNo, url){
+	    document.selectOne.menuNo.value=menuNo;
+	    document.selectOne.link.value=url;
+	    document.selectOne.action = "<c:url value='/s1mesPageLink.do'/>";
+	    //alert(document.selectOne.action);
+	    document.selectOne.submit();
+	}
+
 	$(document).ready(function(){
-		$(".btn").click(function() {
+		$(".btn_menu").click(function() {
 			$("#menu,.page_cover,html").addClass("open");
 			window.location.hash = "#open";
 		});
@@ -37,14 +48,20 @@
 
 
 </head>
+
+<form name="selectOne" action="#LINK">
+<input name="menuNo" type="hidden" />
+<input name="link" type="hidden" />
+</form>
+
 <body>
 	<!-- HEADER -->
-	<header style="width: 100%; text-align:center">
+	<header id="header">
 		<h2>This is header</h2>
 	</header>
 	
 	<!-- MENU -->	
-	<div class="btn">
+	<div class="btn_menu">
 
 	</div>
 	<div onclick="history.back();" class="page_cover"></div>
@@ -57,10 +74,10 @@
 	  	<div class="category">
 			<div class="list_cate">
 				<ul>
-			  		<li><a href="#" >표준품</a></li>
-					<li><a href="#" >Facebook</a></li>
-					<li><a href="#" >Instagram</a></li>
-					<li><a href="#" >Email</a></li>
+			  		<li><a href="#LINK" onclick="fn_main_headPageMove('21', 'login/LoginSuccess')">표준품</a></li>
+					<li><a href="#LINK" onclick="fn_main_headPageMove('21', 'rord/rordProgress')">수주진행상황</a></li>
+					<li><a href="#LINK" >Instagram</a></li>
+					<li><a href="#LINK" >Email</a></li>
 				</ul>
 			</div>
 		</div>
