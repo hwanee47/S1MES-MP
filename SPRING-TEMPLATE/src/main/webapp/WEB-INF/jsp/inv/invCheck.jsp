@@ -58,7 +58,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		/*새로고침 ,6초마다*/
-		setInterval("location.reload()", 6000);
+		//setInterval("location.reload()", 6000);
 	});
 </script>
 
