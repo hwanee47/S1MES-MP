@@ -246,8 +246,7 @@
 	.white-box {
 	    background: #fff;
 	    padding: 15px;
-	    margin: 10px;
-	    float:left;
+	    margin-bottom: 10px;
 	}
 	
 	
@@ -256,7 +255,7 @@
 	    background: #fff;
 	    overflow: hidden;
 	    padding: 15px 10px 9px;
-	    margin-bottom: 25px;
+	    margin-bottom: 15px;
 	}
 	
 	.page-title{

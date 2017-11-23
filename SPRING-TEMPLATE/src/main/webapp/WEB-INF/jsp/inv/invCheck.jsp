@@ -23,7 +23,7 @@
 	width: 50%;
 }
 
-.body-3 {
+.aside {
 	background-color: #33b5e5;
 	padding: 15px;
 	color: #ffffff;
@@ -32,7 +32,7 @@
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.body-3>h2 {
+.aside>h2 {
 	color: #ffffff;
 }
 
@@ -67,8 +67,8 @@
 
 
 <body>
-	<div class="white-box">
-		<div class="body-1 chart">
+	<div class="body-1 chart">
+		<div class="white-box">
 			<canvas id="myChart" width="300" height="400"></canvas>
 			<script
 				src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -112,8 +112,9 @@
 		</div>
 	</div>
 
-	<div class="white-box">	
-		<div class="body-2 chart">
+	
+	<div class="body-2 chart">
+		<div class="white-box">	
 			<canvas id="myChart1" width="300" height="400"></canvas>
 			<script>
 				new Chart(document.getElementById("myChart1"), {
@@ -153,14 +154,17 @@
 		</div>
 	</div>
 	
-	<div class="white-box">
-		<div class="body-3 aside">
-			<h2>What?</h2>
-			<p>Chania is a city on the island of Crete.</p>
-			<h2>Where?</h2>
-			<p>Crete is a Greek island in the Mediterranean Sea.</p>
-			<h2>How?</h2>
-			<p>You can reach Chania airport from all over Europe.</p>
+	
+	<div class="bodytest">
+		<div class="white-box">
+			<div class="aside">
+				<h2>What?</h2>
+				<p>Chania is a city on the island of Crete.</p>
+				<h2>Where?</h2>
+				<p>Crete is a Greek island in the Mediterranean Sea.</p>
+				<h2>How?</h2>
+				<p>You can reach Chania airport from all over Europe.</p>
+			</div>
 		</div>
 	</div>
 
