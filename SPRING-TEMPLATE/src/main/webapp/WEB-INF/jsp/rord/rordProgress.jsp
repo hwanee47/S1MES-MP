@@ -12,9 +12,31 @@
 </style>
 
 <script>
+$(document).ready(function(){
+	
+	/* 수주번호-행번입력후 조회 */
+	$('#execute').click(function(){
+		 $.ajax({
+			 headers: { 
+			        'Accept': 'application/json',
+			        'Content-Type': 'application/json' 
+			    },
+            url:'./getInvStmtInfo.do',
+            type:'POST',
+            /* data:{"rordNum":$('#text_rord_num').val(), "rordSno":$('#text_rord_sno').val()}, */
+             data:JSON.stringify({"rordNum":$('#text_rord_num').val(), "rordSno":$('#text_rord_sno').val()}),
+            success:function(data){
+              	alert("성공");
+            },
+            error:function(data){
+            	alert("잠시 후 다시 시도해주세요.");
+            }
+        })
+	})	
+})
 
 </script>
-
+	
 
 </head>
 <body>
@@ -29,17 +51,17 @@
 			    	<h5>수주번호</h5>
 			    </li>
 			    <li>
-			    	<input type="text" class="form-control" id="exampleInputName2" placeholder=" ex) S17010001">
+			    	<input type="text" class="form-control" id="text_rord_num" placeholder=" ex) S17010001">
 			  	</li>
 			  	<li>
 			    	<h5>행번</h5>
 			    </li>
 			    <li>
-			    	<input type="email" class="form-control" id="exampleInputEmail2" placeholder="ex) 01">
+			    	<input type="email" class="form-control" id="text_rord_sno" placeholder="ex) 01">
 			  	</li>
 			  	
 			  	<li>
-			    	<button type="button" class="btn btn-danger">Send invitaion</button>
+			    	<button type="button" class="btn btn-danger" id="execute">Send invitaion</button>
 			  	</li>
 		  	</ul>
 		</div>
@@ -71,6 +93,50 @@
 	</div>
 	
 	<div class="row2-stmt">
+		<div class="white-box">
+		<div class="table-stmtMaster">
+			<table class="table">
+				<thead>
+					<tr>
+						<th colspan="3">입고</th>
+						<th colspan="3">출하의뢰</th>
+						<th colspan="3">상차</th>
+						<th colspan="3">송장</th>
+						<th colspan="3">출고</th>
+					</tr>
+				</thead>
+				<tr>
+					<!-- 입고 -->
+					<td >S17010002</td>
+					<td >02</td>
+					<td >02</td>
+					
+					<!-- 출하의뢰 -->
+					<td >S17010002</td>
+					<td >02</td>
+					<td >02</td>
+					
+					<!-- 상차 -->
+					<td >S17010002</td>
+					<td >02</td>
+					<td >02</td>
+					
+					<!-- 송장 -->
+					<td >S17010002</td>
+					<td >02</td>
+					<td >02</td>
+					
+					<!-- 출고 -->
+					<td >S17010002</td>
+					<td >02</td>
+					<td >02</td>
+				</tr>
+			</table>
+		</div>
+		</div>
+	</div>
+	
+	<div class="row3-stmt">
 		<div class="col-inWar">
 			<div class="col-head-inWarStmt">
 				
@@ -92,7 +158,7 @@
 		
 	</div>
 	
-	<div class="row3-stmt">
+	<div class="row4-stmt">
 		
 		<div class="col-shipReq">
 			<div class="col-head-shipReqStmt">

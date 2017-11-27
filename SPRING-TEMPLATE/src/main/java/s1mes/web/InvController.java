@@ -4,13 +4,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import s1mes.com.EgovMessageSource;
 import s1mes.web.service.InvService;
+import s1mes.web.vo.SearchTest;
 
 
 /**
@@ -23,7 +24,7 @@ import s1mes.web.service.InvService;
  * @ 2017.11.08    김진환          최초 생성
  * 	 2017.11.10          김진환 	      표준품 판매가능 조회추가.
  *	 2017.11.10          김진환 	      재고품수주관리 판매가능조회추가.
- *  
+ *   2017.11.24	        김진환         수주번호행번 입력받아 총수량,중량,관리중량 조회.
  */
 
 @Controller
@@ -51,10 +52,21 @@ public class InvController {
 	@RequestMapping(value = "/invStdPdCheck.do")
 	public String invCheck(HttpServletRequest request, ModelMap model) throws Exception{
 		model.addAttribute("invCheckInfo", invService.invCheck());
-		
-		
-		
 		return "inv/invCheck";
+	}
+	
+	/**
+	 *  수주번호행번 입력받아 총수량,중량,관리중량 조회.
+	 * @param request - 세션처리를 위한 HttpServletRequest
+	 * @param rordNum - 사용자로부터 입력받은 수주번호
+	 * @param rordSno - 사용자로부터 입력받은 수주행번
+	 * @return result - 입고, 출하의뢰, 상차, 송장, 출고 의 수량,중량,관리중량 
+	 * @exception Exception
+	 */
+	@RequestMapping(value = "/getInvStmtInfo.do")
+	public void getInvStmtInfo(HttpServletRequest request, ModelMap model, @RequestBody SearchTest searchTest) throws Exception{
+		System.out.println("asd");
+		//invService.getInvStmtInfo();
 	}
 	
 	/*

@@ -9,6 +9,7 @@
 				http://www.springframework.org/schema/task/spring-task-3.0.xsd
 				">
 
+	
     <!-- scan component -->
     <context:component-scan base-package="s1mes"/>
     
